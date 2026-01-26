@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GamerTopUp</title>
+    <title>GamerTopUp - Pro Version</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -39,7 +39,6 @@
             color: var(--text-light);
             line-height: 1.5;
             overflow-x: hidden;
-            /* Subtle animated gradient background */
             background: radial-gradient(circle at top left, #1e1b4b, #0f172a);
             min-height: 100vh;
         }
@@ -63,7 +62,7 @@
             top: 0;
             z-index: 100;
             backdrop-filter: blur(12px);
-            background: rgba(15, 23, 42, 0.85);
+            background: rgba(15, 23, 42, 0.9);
             border-bottom: 1px solid var(--border);
         }
 
@@ -97,24 +96,126 @@
         }
         .btn-cs:hover { background: #229ED9; border-color: #229ED9; color: white; }
 
-        /* --- HERO (Compact) --- */
+        /* --- HERO (ADVANCED CYBERPUNK STYLE) --- */
         .hero {
             text-align: center;
             margin-bottom: 30px;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, rgba(99,102,241,0.15) 0%, rgba(236,72,153,0.05) 100%);
+            padding: 60px 20px; 
             border-radius: 16px;
             border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            
+            /* Background Grid Cyberpunk */
+            background-color: #0b101d;
+            background-image: 
+                linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            box-shadow: 0 0 50px rgba(99, 102, 241, 0.1) inset;
+        }
+
+        /* Efek Kilatan Petir (Lightning Flash) */
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            opacity: 0;
+            pointer-events: none;
+            animation: lightningFlash 8s infinite;
+        }
+
+        /* Glitch Title Effect */
+        .glitch-wrapper {
+            position: relative;
+            display: inline-block;
         }
 
         .hero h1 {
-            font-size: 2rem;
-            margin-bottom: 8px;
-            background: linear-gradient(to right, #fff, #cbd5e1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            position: relative;
+            color: #fff;
+            text-transform: uppercase;
         }
-        .hero p { color: var(--text-gray); font-size: 0.95rem; max-width: 500px; margin: 0 auto; }
+
+        .hero h1::before,
+        .hero h1::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #0b101d; /* Same as hero bg to mask base text */
+        }
+
+        .hero h1::before {
+            left: 2px;
+            text-shadow: -1px 0 #ff00c1;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        .hero h1::after {
+            left: -2px;
+            text-shadow: -1px 0 #00fff9;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+
+        /* RGB Neon Text Effect */
+        .hero p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(
+                to right, 
+                #ec4899, #8b5cf6, #3b82f6, #06b6d4, #ec4899
+            );
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: rgbFlow 3s linear infinite;
+            text-shadow: 0 0 10px rgba(236, 72, 153, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes lightningFlash {
+            0% { opacity: 0; }
+            5% { opacity: 0; }
+            6% { opacity: 0.8; transform: scale(1.1); } 
+            7% { opacity: 0; }
+            40% { opacity: 0; }
+            41% { opacity: 0.5; transform: scale(1.02); } 
+            42% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(30px, 9999px, 10px, 0); }
+            5% { clip: rect(80px, 9999px, 90px, 0); }
+            10% { clip: rect(10px, 9999px, 50px, 0); }
+            15% { clip: rect(60px, 9999px, 20px, 0); }
+            20% { clip: rect(20px, 9999px, 70px, 0); }
+            100% { clip: rect(50px, 9999px, 40px, 0); }
+        }
+
+        @keyframes glitch-anim2 {
+            0% { clip: rect(10px, 9999px, 80px, 0); }
+            5% { clip: rect(90px, 9999px, 10px, 0); }
+            10% { clip: rect(40px, 9999px, 30px, 0); }
+            15% { clip: rect(20px, 9999px, 60px, 0); }
+            20% { clip: rect(70px, 9999px, 10px, 0); }
+            100% { clip: rect(30px, 9999px, 80px, 0); }
+        }
+
+        @keyframes rgbFlow {
+            to { background-position: 200% center; }
+        }
 
         /* --- TABS --- */
         .game-tabs {
@@ -154,7 +255,7 @@
             background: var(--bg-card);
             backdrop-filter: blur(20px);
             border-radius: 16px;
-            padding: 25px; /* Padding lebih kecil untuk tampilan "short" */
+            padding: 25px;
             border: 1px solid var(--border);
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             animation: slideUp 0.4s ease-out;
@@ -179,7 +280,6 @@
             padding-left: 10px;
         }
 
-        /* Inputs */
         .input-group { display: grid; grid-template-columns: 2fr 1fr; gap: 10px; }
 
         input[type="number"], input[type="text"] {
@@ -199,10 +299,9 @@
             box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
         }
 
-        /* Grid Items (Compact) */
         .items-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Kartu lebih kecil agar muat banyak */
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             gap: 10px;
         }
 
@@ -225,7 +324,6 @@
             background: linear-gradient(145deg, rgba(99, 102, 241, 0.15), rgba(99, 102, 241, 0.05));
         }
         
-        /* Membership Special Style */
         .item-card.membership {
             border-color: rgba(251, 191, 36, 0.3);
         }
@@ -234,7 +332,7 @@
         .item-card.membership .item-amount { color: var(--gold); }
 
         .item-card.selected::after {
-            content: "\2713"; /* Checkmark */
+            content: "\2713";
             position: absolute;
             top: 5px; right: 5px;
             background: var(--primary);
@@ -247,13 +345,11 @@
             justify-content: center;
         }
 
-        /* Override checkmark color for membership */
         .item-card.membership.selected::after { background: var(--gold); }
 
         .item-amount { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; display: block; line-height: 1.2; }
         .item-price { font-size: 0.8rem; color: var(--text-gray); }
 
-        /* Payment Section */
         .payment-method {
             background: linear-gradient(90deg, rgba(99, 102, 241, 0.08), rgba(236, 72, 153, 0.08));
             border: 1px solid var(--border);
@@ -266,7 +362,6 @@
         .payment-info strong { display: block; font-size: 1.1rem; color: var(--text-light); }
         .payment-icon { font-size: 1.5rem; color: var(--primary); }
 
-        /* Main Button */
         .btn-buy {
             width: 100%;
             padding: 14px;
@@ -280,6 +375,7 @@
             transition: var(--transition);
             margin-top: 5px;
             box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            position: relative;
         }
 
         .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4); filter: brightness(1.1); }
@@ -322,7 +418,18 @@
         }
         .modal-overlay.active .modal-content { transform: scale(1); }
 
-        .qris-img { width: 100%; max-width: 220px; height: auto; margin: 20px 0; border-radius: 10px; padding: 5px; background: white; }
+        /* Style untuk Gambar QRIS */
+        .qris-img { 
+            width: 100%; 
+            max-width: 220px; 
+            height: auto; 
+            margin: 20px 0; 
+            border-radius: 10px; 
+            padding: 5px; 
+            background: white; 
+            box-shadow: 0 0 15px rgba(255,255,255,0.1);
+        }
+        
         .modal-title { font-size: 1.3rem; margin-bottom: 5px; color: var(--text-light); }
         .modal-desc { color: var(--text-gray); font-size: 0.9rem; margin-bottom: 20px; }
 
@@ -357,10 +464,11 @@
         /* --- RESPONSIVE --- */
         @media (max-width: 600px) {
             .input-group { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 1.5rem; }
+            .hero h1 { font-size: 1.8rem; }
             .items-grid { grid-template-columns: repeat(2, 1fr); }
             nav ul { display: none; }
             .logo { font-size: 1.2rem; }
+            .hero { padding: 40px 15px; }
         }
     </style>
 </head>
@@ -386,9 +494,11 @@
             </nav>
         </header>
 
-        <!-- Hero Banner (Compact) -->
+        <!-- Hero Banner -->
         <section class="hero">
-            <h1>Top Up Game & Membership</h1>
+            <div class="glitch-wrapper">
+                <h1 data-text="Top Up Game & Membership">Top Up Game & Membership</h1>
+            </div>
             <p>Harga termurah, proses otomatis hitungan detik. Layanan 24 Jam.</p>
         </section>
 
@@ -508,8 +618,8 @@
             <h3 class="modal-title">Scan QRIS</h3>
             <p class="modal-desc">Scan untuk bayar via GoPay, OVO, Dana, dll.</p>
             
-             <img src="eja-png" class="eja-png">
-
+            <!-- PERBAIKAN: Memanggil file eja.png -->
+            <img src="eja.png" alt="QRIS Code" class="qris-img">
 
             
             <div class="modal-total" id="modalTotal">Rp 0</div>
